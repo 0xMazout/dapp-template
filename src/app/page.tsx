@@ -1,5 +1,6 @@
 'use client';
 
+import { usePrivy } from '@privy-io/react-auth';
 import Head from 'next/head';
 import Link from 'next/link';
 import * as React from 'react';
@@ -18,12 +19,13 @@ import Logo from '~/svg/Logo.svg';
 // to customize the default configuration.
 
 export default function HomePage() {
+  const { login } = usePrivy();
   return (
     <main>
       <Head>
         <title>Hi</title>
       </Head>
-      <section className='bg-white'>
+      <section className='bg-slate-500'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
           <Logo className='w-16' />
           <h1 className='mt-4'>Next.js + Tailwind CSS + TypeScript Starter</h1>
@@ -49,7 +51,20 @@ export default function HomePage() {
               alt='Deploy with Vercel'
             />
           </Link>
-
+          <Link href='wagmi'>
+            <button className='mt-4 rounded border-4'>Wagmi</button>
+          </Link>
+          <button
+            className='rounded-lg bg-violet-600 px-6 py-3 text-white hover:bg-violet-700'
+            onClick={login}
+          >
+            Log in
+          </button>
+          <Link href='dashboard'>
+            <button className='mt-4 rounded-xl bg-cyan-700 p-4 hover:bg-cyan-600'>
+              Dashboard
+            </button>
+          </Link>
           <footer className='absolute bottom-2 text-gray-700'>
             © {new Date().getFullYear()} By{' '}
             <Link href='https://github.com/0xMazout/ts-nextjs-tailwind-starter-fullpack-approuter'>
